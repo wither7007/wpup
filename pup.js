@@ -11,7 +11,7 @@ const devices = require('puppeteer/DeviceDescriptors');
 
 (async () => {
     const browser = await puppeteer.launch({
-        headless: false
+        headless: true 
     })
     const page = await browser.newPage()
     await page.emulate(devices['iPhone 6'])
