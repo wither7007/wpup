@@ -18,7 +18,7 @@ const puppeteer = require('puppeteer');
     });
     await page.screenshot({
         path: 'full.png',
-        fullPage: false
+        fullPage: true
     })
     // await page.goto('https://slate.com', {
     //     timeout: 0
