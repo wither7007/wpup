@@ -9,24 +9,28 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-    const browser = await puppeteer.launch({
-        headless: true 
-    })
-    const page = await browser.newPage()
-    await page.goto('https://washingtonpost.com', {
-        timeout: 0
-    });
-    await page.screenshot({
-        path: 'full.png',
-        fullPage: true
-    })
-    // await page.goto('https://slate.com', {
-    //     timeout: 0
-    // });
-    // await page.screenshot({
-    //     path: 'full2.png',
-    //     fullPage: false
-    // })
-    // console.log(await page.title())
-    await browser.close()
-})()
+  async function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+  const page = await browser.newPage();
+  await page.goto('https://washingtonpost.com', {
+    waitUntil: 'load',
+  });
+  await timeout(5000)
+  await page.screenshot({
+    path: 'full.png',
+    fullPage: true,
+  });
+  // await page.goto('https://slate.com', {
+  //     timeout: 0
+  // });
+  // await page.screenshot({
+  //     path: 'full2.png',
+  //     fullPage: false
+  // })
+  // console.log(await page.title())
+  await browser.close();
+})();
